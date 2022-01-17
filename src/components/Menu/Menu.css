@@ -1,0 +1,49 @@
+.Menu__container {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  max-height: 100%;
+  margin-right: 16px;
+  border-radius: 8px;
+  background-color: #FFFFFF;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.Menu__actions {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  z-index: 1;
+}
+
+.Menu__action {
+  width: 32px;
+  margin-bottom: 1px;
+}
+
+.Menu__content {
+  width: 300px;
+  height: 100%;
+  padding: 16px;
+  overflow-y: auto;
+}
+
+.Menu__content--expanded {
+  width: 600px;
+}
+
+.Menu__footer {
+  margin-top: 16px;
+}
+
+.Menu__item:not(:last-child) {
+  margin-bottom: 8px;
+}
+
+.Menu__label {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 12px;
+  color: #0D0D0D;
+}

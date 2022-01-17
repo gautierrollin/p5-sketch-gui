@@ -1,0 +1,18 @@
+.Button {
+  height: 32px;
+  padding: 8px;;
+  background-color: #0D0D0D;
+  border: none;
+  border-radius: 2px;
+  color: #FFF;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.Button:focus {
+  outline: 2px solid #C4D4F2;
+}
+
+.Button--loading {
+  cursor: wait;
+}

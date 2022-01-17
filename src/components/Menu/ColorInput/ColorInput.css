@@ -1,0 +1,43 @@
+.ColorInput__container {
+  display: flex;
+  height: 16px;
+  align-items: center;
+}
+
+.ColorInput__input {
+  width: 25%;
+  height: 100%;
+  padding-left: 8px;
+  border: none;
+  color: #0D0D0D;
+}
+
+.ColorInput__input:focus {
+  outline: 2px solid #C4D4F2;
+}
+
+.ColorInput__picker {
+  width: 75%;
+  height: 100%;
+  padding: 0;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.ColorInput__picker::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.ColorInput__picker::-webkit-color-swatch {
+  border-color: transparent;
+}
+
+.ColorInput__picker::-moz-color-swatch {
+  border-color: transparent;
+}
+
+.ColorInput__picker--bordered {
+  border: 1px dashed #A6A6A6;
+}

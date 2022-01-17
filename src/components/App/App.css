@@ -1,0 +1,9 @@
+.App__container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  padding: 16px;
+  background-color: #F2F2F2;
+  align-items: flex-start;
+  flex-direction: row;
+}
