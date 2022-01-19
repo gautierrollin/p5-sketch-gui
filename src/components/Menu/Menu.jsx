@@ -4,6 +4,7 @@ import useStore from "../../store/useStore";
 import Button from "../Button";
 import Control from "./Control";
 import ExportButton from "./ExportButton";
+import ResetButton from "./ResetButton";
 import SketchFilenameForm from "./SketchFilenameForm";
 import "./Menu.css";
 
@@ -64,6 +65,7 @@ function Menu() {
           ))}
           <div className="Menu__footer">
             <ExportButton />
+            <ResetButton />
           </div>
         </div>
       )}

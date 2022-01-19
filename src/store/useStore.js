@@ -1,6 +1,7 @@
 import create from "zustand";
 import getCookie from "../helpers/getCookie";
 import initSketch from "./actions/initSketch";
+import resetControlValues from "./actions/resetControlValues";
 import setControlValue from "./actions/setControlValue";
 import setSketchFilename from "./actions/setSketchFilename";
 import toggleMenuSize from "./actions/toggleMenuSize";
@@ -19,6 +20,7 @@ export default create(set => ({
   initSketch : module => initSketch(module.sketch, module.controls)(set),
   setSketchFilename : sketchFilename => setSketchFilename(sketchFilename)(set),
   setControlValue : (key, value) => setControlValue(key, value)(set),
+  resetControlValues : () => resetControlValues()(set),
   toggleMenuVisibility : () => toggleMenuVisibility()(set),
   toggleMenuSize : () => toggleMenuSize()(set)
 }));
