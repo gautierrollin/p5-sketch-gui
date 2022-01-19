@@ -34,6 +34,7 @@
 }
 
 .Menu__footer {
+  display: flex;
   margin-top: 16px;
 }
 
