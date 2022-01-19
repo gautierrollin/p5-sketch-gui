@@ -20,7 +20,7 @@ export default function initSketch(sketch, controls = {}) {
     controls : sanitizedControls,
     controlsState : sanitizedControls.reduce((accu, control) => ({
       ...accu,
-      [control.key] : control.value
+      [control.key] : control.defaultValue
     }), {})
   }));
 }

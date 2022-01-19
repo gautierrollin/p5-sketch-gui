@@ -15,12 +15,6 @@ export default function setControlValue(key, value) {
 
   return set => set(currentState => ({
     ...currentState,
-    controls : currentState.controls.map(control => (
-      control.key === key ? {
-        ...control,
-        value
-      } : control
-    )),
     controlsState : {
       ...currentState.controlsState,
       [key] : value

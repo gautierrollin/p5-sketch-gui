@@ -9,6 +9,7 @@ import "./Menu.css";
 
 function Menu() {
   const controls = useStore(state => state.controls);
+  const controlsState = useStore(state => state.controlsState);
   const { isVisible, isExpanded } = useStore(state => state.menuState);
   const toggleMenuVisibility = useStore(state => state.toggleMenuVisibility);
   const toggleMenuSize = useStore(state => state.toggleMenuSize);
@@ -53,7 +54,7 @@ function Menu() {
               <Control
                 id={control.key}
                 type={control.type}
-                value={control.value}
+                value={controlsState[control.key]}
                 min={control.min}
                 max={control.max}
               />

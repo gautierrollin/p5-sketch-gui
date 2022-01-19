@@ -23,12 +23,16 @@ export default function sanitizeControls(controls) {
     } else {
       control = {
         ...control,
-        value,
         defaultValue : value
       };
     }
 
-    const type = getTypeFromValue(control.value);
+    if (control.value) {
+      // Renamed to `defaultValue`.
+      delete control.value;
+    }
+
+    const type = getTypeFromValue(control.defaultValue);
     control = {
       ...control,
       type
