@@ -18,6 +18,7 @@ function ExportButton() {
 
   return (
     <Button
+      type="primary"
       disabled={loading}
       loading={loading}
       onClick={copyToClipboard}

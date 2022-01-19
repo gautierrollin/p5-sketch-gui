@@ -23,6 +23,7 @@ function Menu() {
     <div className="Menu__container">
       <div className="Menu__actions">
         <Button
+          type="primary"
           className="Menu__action"
           onClick={toggleMenuVisibility}
         >
@@ -30,6 +31,7 @@ function Menu() {
         </Button>
         {isVisible && (
           <Button
+            type="primary"
             className="Menu__action"
             onClick={toggleMenuSize}
           >

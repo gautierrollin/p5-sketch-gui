@@ -1,10 +1,10 @@
 .Button {
   height: 32px;
-  padding: 8px;;
-  background-color: #0D0D0D;
-  border: none;
+  padding: 8px;
+  background-color: transparent;
+  border: 1px solid #0D0D0D;
   border-radius: 2px;
-  color: #FFF;
+  color: #0D0D0D;
   font-weight: bold;
   cursor: pointer;
 }
@@ -15,4 +15,10 @@
 
 .Button--loading {
   cursor: wait;
+}
+
+.Button--primary {
+  background-color: #0D0D0D;
+  border: none;
+  color: #FFFFFF;
 }

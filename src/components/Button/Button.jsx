@@ -6,7 +6,8 @@ import "./Button.css";
 const propTypes = {
   children : PropTypes.node.isRequired,
   className : PropTypes.string,
-  isSubmitType : PropTypes.bool,
+  type : PropTypes.oneOf(["default", "primary"]),
+  isSubmitHtmlType : PropTypes.bool,
   disabled : PropTypes.bool,
   loading : PropTypes.bool,
   onClick : PropTypes.func
@@ -15,7 +16,8 @@ const propTypes = {
 function Button(props) {
   const {
     className : classNameFromProps,
-    isSubmitType,
+    type,
+    isSubmitHtmlType,
     disabled,
     loading,
     onClick,
@@ -24,12 +26,13 @@ function Button(props) {
 
   const className = getClassNames({
     Button : true,
-    "Button--loading" : loading
+    "Button--loading" : loading,
+    "Button--primary" : type === "primary"
   }, classNameFromProps);
 
   return (
     <button
-      type={isSubmitType ? "submit" : "button"}
+      type={isSubmitHtmlType ? "submit" : "button"}
       disabled={disabled}
       className={className}
       onClick={onClick}

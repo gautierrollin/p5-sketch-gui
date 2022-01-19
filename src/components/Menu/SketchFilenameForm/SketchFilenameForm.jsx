@@ -48,7 +48,10 @@ function SketchFilenameForm() {
         required
         onChange={hanleChange}
       />
-      <Button isSubmitType>
+      <Button
+        type="primary"
+        isSubmitHtmlType
+      >
         Load
       </Button>
     </form>
