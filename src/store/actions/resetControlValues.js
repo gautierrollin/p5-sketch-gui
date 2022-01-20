@@ -12,22 +12,14 @@ export default function resetControlValues() {
     return {
       ...currentState,
       controlsState,
-      controlsExport : Object.entries(currentState.controlsExport).reduce((accu, [key, value]) => {
-        if (value.value) {
-          return {
-            ...accu,
-            [key] : {
-              ...value,
-              value : controlsState[key]
-            }
-          };
-        }
-
-        return {
-          ...accu,
-          [key] : controlsState[key]
-        };
-      }, {})
+      controlsExport : Object.entries(currentState.controlsExport).reduce((accu, [key, value]) => ({
+        ...accu,
+        // If the user has already used an object to define this control, keep it.
+        [key] : value.value ? {
+          ...value,
+          value : controlsState[key]
+        } : controlsState[key]
+      }), {})
     };
   });
 }

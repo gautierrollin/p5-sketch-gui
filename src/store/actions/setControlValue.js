@@ -21,10 +21,11 @@ export default function setControlValue(key, value) {
     },
     controlsExport : {
       ...currentState.controlsExport,
-      [key] : {
+      // If the user has already used an object to define this control, keep it.
+      [key] : currentState.controlsExport[key].value ? {
         ...currentState.controlsExport[key],
         value
-      }
+      } : value
     }
   }));
 }
