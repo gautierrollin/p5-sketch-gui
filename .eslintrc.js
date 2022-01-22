@@ -61,7 +61,14 @@ module.exports = {
     }],
 
     "object-curly-newline" : ["error", {
-      multiline : true
+      ObjectExpression : {
+        multiline : true,
+        consistent : true
+      },
+      ObjectPattern : {
+        multiline : true,
+        consistent : true
+      }
     }],
 
     "padded-blocks" : ["error", {
