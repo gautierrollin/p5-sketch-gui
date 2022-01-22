@@ -25,6 +25,8 @@ function Menu() {
       <div className="Menu__actions">
         <Button
           type="primary"
+          tooltip={isVisible ? "Hide menu" : "Show menu"}
+          tooltipPosition="right"
           className="Menu__action"
           onClick={toggleMenuVisibility}
         >
@@ -33,6 +35,8 @@ function Menu() {
         {isVisible && (
           <Button
             type="primary"
+            tooltip={isExpanded ? "Shrink menu" : "Expand menu"}
+            tooltipPosition="right"
             className="Menu__action"
             onClick={toggleMenuSize}
           >
