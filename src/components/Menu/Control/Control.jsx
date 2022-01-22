@@ -17,10 +17,14 @@ const propTypes = {
     PropTypes.number
   ]).isRequired,
   min : PropTypes.number,
-  max : PropTypes.number
+  max : PropTypes.number,
+  defaultValue : PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ])
 };
 
-function Control({ id, type, value, min, max }) {
+function Control({ id, type, value, defaultValue, min, max }) {
   const setControlValue = useStore(state => state.setControlValue);
   const Component = COMPONENT_MAP[type];
 
@@ -28,6 +32,7 @@ function Control({ id, type, value, min, max }) {
     <Component
       id={id}
       value={value}
+      defaultValue={defaultValue}
       min={min}
       max={max}
       onChange={v => setControlValue(id, v)}

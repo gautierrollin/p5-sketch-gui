@@ -10,17 +10,19 @@
  * See https://stackoverflow.com/questions/65738788/input-range-slider-progress-for-chrome-browser
  *
  * @param {number} percent
+ * @param {string?} color1
+ * @param {string?} color2
  * @returns {Object}
  */
-export default function getProgressBarStyles(percent) {
+export default function getProgressBarStyles(percent, color1 = "#99AFF2", color2 = "#C4D4F2") {
   return {
     background : `
       linear-gradient(
         to right,
-        #99AFF2 0%,
-        #99AFF2 ${percent}%,
-        #C4D4F2 ${percent}%,
-        #C4D4F2 100%
+        ${color1} 0%,
+        ${color1} ${percent}%,
+        ${color2} ${percent}%,
+        ${color2} 100%
       )
     `
   };

@@ -1,27 +1,78 @@
 .Button {
-  display: flex;
-  height: 32px;
-  padding: 8px;
   background-color: transparent;
-  border: 1px solid #0D0D0D;
-  border-radius: 2px;
-  color: #0D0D0D;
-  font-weight: bold;
+  border: none;
   cursor: pointer;
-  align-items: center;
-  justify-content: center;
 }
 
 .Button:focus {
   outline: 2px solid #C4D4F2;
 }
 
-.Button--loading {
-  cursor: wait;
+.Button--default,
+.Button--primary {
+  display: flex;
+  height: 32px;
+  padding: 8px;
+  border-radius: 2px;
+  font-weight: bold;
+  align-items: center;
+  justify-content: center;
+}
+
+.Button--default {
+  border: 1px solid #0D0D0D;
+  color: #0D0D0D;
 }
 
 .Button--primary {
   background-color: #0D0D0D;
-  border: none;
   color: #FFFFFF;
+}
+
+.Button--loading {
+  cursor: wait;
+}
+
+.Button--with-tooltip {
+  position: relative;
+}
+
+.Button__tooltip {
+  position: absolute;
+  display: none;
+  padding: 4px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 2px;
+  color: #FFFFFF;
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+.Button:hover .Button__tooltip,
+.Button:focus .Button__tooltip {
+  display: block;
+}
+
+.Button__tooltip--top {
+  top: -4px;
+  left: 50%;
+  transform: translate(-50%, -100%);
+}
+
+.Button__tooltip--right {
+  top: 50%;
+  right: -4px;
+  transform: translate(100%, -50%);
+}
+
+.Button__tooltip--bottom {
+  bottom: -4px;
+  left: 50%;
+  transform: translate(-50%, 100%);
+}
+
+.Button__tooltip--left {
+  top: 50%;
+  left: -4px;
+  transform: translate(-100%, -50%);
 }

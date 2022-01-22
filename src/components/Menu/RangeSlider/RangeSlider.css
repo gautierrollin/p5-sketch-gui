@@ -36,3 +36,17 @@
 .RangeSlider__slider::-webkit-slider-thumb {
   visibility: hidden; /* Must only be hidden */
 }
+
+.RangeSlider__default-value-indicator {
+  position: absolute;
+  top: 4px;
+  width: 8px;
+  height: 8px;
+  background-color: #FFFFFF;
+  border-radius: 50%;
+  transform: translateX(-50%);
+}
+
+.RangeSlider__default-value-indicator:focus {
+  outline: 1px solid #F2F2F2;
+}

@@ -58,6 +58,7 @@ function Menu() {
                 id={control.key}
                 type={control.type}
                 value={controlsState[control.key]}
+                defaultValue={control.defaultValue}
                 min={control.min}
                 max={control.max}
               />
