@@ -1,22 +1,20 @@
 export const controls = {
-  canvasHeight : 800,
-  canvasWidth : 800
+  canvasWidth : 800,
+  canvasHeight : 800
 };
 
-export function sketch(p5, state) {
+export function getSketchDefinition(state) {
   const {
-    canvasHeight,
-    canvasWidth
+    canvasWidth,
+    canvasHeight
   } = state;
 
-  p5.setup = () => {
-    p5.createCanvas(canvasWidth, canvasHeight);
-    p5.angleMode(p5.DEGREES);
-    p5.background(255);
-    p5.noLoop();
+  const settings = {
+    width : canvasWidth,
+    height : canvasHeight
   };
 
-  p5.draw = () => {
+  const shapes = [];
 
-  };
+  return { settings, shapes };
 }

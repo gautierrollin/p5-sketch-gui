@@ -1,4 +1,3 @@
-import P5 from "p5";
 import React, { useEffect, useRef } from "react";
 import useStore from "../../store/useStore";
 import "./Sketch.css";
@@ -30,18 +29,13 @@ function Sketch() {
   }, [sketch, controlsState, menuState.isVisible, menuState.isExpanded]);
 
   useEffect(() => {
-    let p5;
-
     if (sketch) {
-      p5 = new P5(
-        p5Instance => sketch(p5Instance, controlsState),
-        containerRef.current
-      );
+      sketch.createOrUpdate(controlsState, containerRef.current);
     }
 
     return () => {
-      if (p5) {
-        p5.remove();
+      if (sketch) {
+        sketch.delete();
       }
     };
   }, [sketch, controlsState]);

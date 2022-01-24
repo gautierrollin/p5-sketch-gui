@@ -17,7 +17,7 @@ export default create(set => ({
     isVisible : true,
     isExpanded : false
   },
-  initSketch : module => initSketch(module.sketch, module.controls)(set),
+  initSketch : module => initSketch(module.getSketchDefinition, module.controls)(set),
   setSketchFilename : sketchFilename => setSketchFilename(sketchFilename)(set),
   setControlValue : (key, value) => setControlValue(key, value)(set),
   resetControlValues : () => resetControlValues()(set),

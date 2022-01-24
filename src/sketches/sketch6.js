@@ -1,6 +1,6 @@
 // export const controls = {
-//   canvasHeight : 800,
 //   canvasWidth : 800,
+//   canvasHeight : 800,
 //   anchor1x : {
 //     value : 1000,
 //     max : 10000
@@ -19,8 +19,8 @@
 // };
 
 export const controls = {
-  canvasHeight : 800,
   canvasWidth : 800,
+  canvasHeight : 800,
   anchor1x : {
     value : 1000,
     max : 10000
@@ -38,10 +38,10 @@ export const controls = {
   numberOfLines : 230
 };
 
-export function sketch(p5, state) {
+export function getSketchDefinition(state) {
   const {
-    canvasHeight,
     canvasWidth,
+    canvasHeight,
     anchor1x,
     anchor1y,
     anchor2x,
@@ -53,26 +53,36 @@ export function sketch(p5, state) {
     numberOfLines
   } = state;
 
-  p5.setup = () => {
-    p5.createCanvas(canvasWidth, canvasHeight);
-    p5.angleMode(p5.DEGREES);
-    p5.background(255);
-    p5.noLoop();
+  const settings = {
+    width : canvasWidth,
+    height : canvasHeight
   };
 
-  p5.draw = () => {
-    for (let i = 0; i < numberOfLines; i++) {
-      p5.noFill();
-      p5.bezier(
-        anchor1x - i * 20,
-        anchor1y,
-        control1x,
-        control1y,
-        control2x,
-        control2y,
-        anchor2x,
-        anchor2y - i * 20
-      );
-    }
-  };
+  const shapes = [];
+
+  for (let i = 0; i < numberOfLines; i++) {
+    shapes.push({
+      type : "cubic-bezier",
+      params : {
+        p0 : {
+          x : anchor1x - i * 20,
+          y : anchor1y
+        },
+        p1 : {
+          x : control1x,
+          y : control1y
+        },
+        p2 : {
+          x : control2x,
+          y : control2y
+        },
+        p3 : {
+          x : anchor2x,
+          y : anchor2y - i * 20
+        }
+      }
+    });
+  }
+
+  return { settings, shapes };
 }

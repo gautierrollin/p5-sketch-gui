@@ -39,6 +39,10 @@ module.exports = {
       ]
     }],
 
+    "lines-between-class-members" : ["error", "always", {
+      exceptAfterSingleLine : true
+    }],
+
     "key-spacing" : ["error", {
       singleLine : {
         beforeColon : false,
@@ -54,6 +58,11 @@ module.exports = {
 
     "no-multiple-empty-lines" : ["error", {
       max : 2
+    }],
+
+    "no-param-reassign" : ["error", {
+      props : true,
+      ignorePropertyModificationsFor : ["p5Instance"]
     }],
 
     "no-plusplus" : ["error", {

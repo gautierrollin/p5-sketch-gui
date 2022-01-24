@@ -15,7 +15,10 @@ function SketchFilenameForm() {
   useEffect(() => {
     import(`../../../sketches/${sketchFilename}.js`)
       .then(initSketch)
-      .catch(() => setFileNotFound(true));
+      .catch(err => {
+        setFileNotFound(true);
+        throw err;
+      });
   }, [sketchFilename, initSketch]);
 
   const handleSubmit = e => {

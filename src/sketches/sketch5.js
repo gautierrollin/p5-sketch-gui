@@ -1,48 +1,59 @@
 import getCirclePointCoordinates from "./helpers/getCirclePointCoordinates";
 
 export const controls = {
-  canvasHeight : 800,
   canvasWidth : 800,
+  canvasHeight : 800,
   numberOfCricle : 228,
   circleArcHeight : 15
 };
 
-export function sketch(p5, state) {
+export function getSketchDefinition(state) {
   const {
-    canvasHeight,
     canvasWidth,
+    canvasHeight,
     numberOfCricle,
     circleArcHeight
   } = state;
 
-  p5.setup = () => {
-    p5.createCanvas(canvasWidth, canvasHeight);
-    p5.angleMode(p5.DEGREES);
-    p5.background(255);
-    p5.noLoop();
+  const settings = {
+    width : canvasWidth,
+    height : canvasHeight
   };
 
-  p5.draw = () => {
-    for (let i = numberOfCricle; i > 0; i--) {
-      const circleOriginX = 800;
-      const circleOriginY = 0;
-      const circleRadius = i * circleArcHeight;
+  const shapes = [];
 
-      p5.noStroke();
-      p5.circle(circleOriginX, circleOriginY, circleRadius * 2);
-      p5.stroke(0);
+  for (let i = numberOfCricle; i > 0; i--) {
+    const circleOriginX = 800;
+    const circleOriginY = 0;
+    const circleRadius = i * circleArcHeight;
 
-      for (let j = 0; j < 360; j++) {
-        if (i % 2 === 0 && j % 2 === 0) {
-          const { x, y } = getCirclePointCoordinates(circleOriginX, circleOriginY, circleRadius, j);
-          p5.line(circleOriginX, circleOriginY, x, y);
-        }
+    shapes.push({
+      type : "circle",
+      params : {
+        x : circleOriginX,
+        y : circleOriginY,
+        diameter : circleRadius * 2,
+        backgroundColor : "#FFFFFF"
+      }
+    });
 
-        if (i % 2 === 1 && j % 2 === 1) {
-          const { x, y } = getCirclePointCoordinates(circleOriginX, circleOriginY, circleRadius, j);
-          p5.line(circleOriginX, circleOriginY, x, y);
-        }
+    for (let j = 0; j < 360; j++) {
+      if ((i % 2 === 0 && j % 2 === 0) || (i % 2 === 1 && j % 2 === 1)) {
+        const { x, y } = getCirclePointCoordinates(circleOriginX, circleOriginY, circleRadius, j);
+
+        shapes.push({
+          type : "line",
+          params : {
+            p0 : {
+              x : circleOriginX,
+              y : circleOriginY
+            },
+            p1 : { x, y }
+          }
+        });
       }
     }
-  };
+  }
+
+  return { settings, shapes };
 }

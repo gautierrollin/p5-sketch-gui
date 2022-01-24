@@ -23,7 +23,7 @@ npm start
 
 Create a JavaScript file in the `src/sketches` folder. You can duplicate the sample `sketch.js` that exports a simple sketch and controls to customize the canvas size.
 
-This file should export at least a named function called `sketch`. The exported `controls` constant is not mandatory but, well, this is the main goal of the application!
+This file should export at least a named function called `getSketchDefinition`. The exported `controls` constant is not mandatory but, well, this is the main goal of the application!
 
 Go to `http://localhost:3000/` and type the name of your file in the dedicated input to load it:
 
@@ -64,24 +64,93 @@ export const controls = {
 
 ### Add sketch
 
-Export a `sketch` function. This function takes two arguments:
-
-- `p5`: the `p5` instance
-- `state`: object with the updated value of your variables
+Export a [`getSketchDefinition`](#get-sketch-definition) function:
 
 ```js
-export function sketch(p5, state) {
+export function getSketchDefinition(state) {
   const { canvasWidth, canvasHeight } = state;
 
-  p5.setup = () => {
-    p5.createCanvas(canvasWidth, canvasHeight);
-    p5.background(255);
-  };
-
-  p5.draw = () => {
-    p5.rect(20, 20, 300, 300);
+  return {
+    settings : {
+      width : canvasWidth,
+      height : canvasHeight
+    },
+    shapes : [{
+      type : "rect",
+      params : {
+        x : 20,
+        y : 20,
+        width : 300
+      }
+    }]
   };
 }
 ```
 
-⚠️ For now, only the p5 instance mode is available.
+<a name="get-sketch-definition"></a>
+#### `getSketchDefinition`
+
+- **state** `Object` updated value of your variables
+- returns a [Sketch Definition Object](#sketch-definition)
+
+<a name="sketch-definition"></a>
+#### Sketch Definition
+
+- **settings** `Object`
+  - **backgroundColor** `string` sketch background color
+  - **width** `string` sketch width
+  - **height** `string` sketch height
+- **shapes** `Array<Object>` Containing an array of [Shape Object](#shape)
+
+<a name="shape"></a>
+#### Shape
+
+- **type** `string` type of shape. Possible values: `circle`, `cubic-bezier`, `line`, `rect` **(Required)**
+- **params** `Object` Containing a [Circle Params Object](#circle-params), or a [Cubic Bezier Params Object](#cubic-bezier-params), or a [Line Params Object](#line-params), or a [Rect Params Object](#rect-params) **(Required)**
+
+<a name="circle-params"></a>
+#### Circle Params
+
+- **x** `number` circle center x-coordinate **(Required)**
+- **y** `number` circle center y-coordinate **(Required)**
+- **diameter** `number` circle diameter **(Required)**
+- **backgroundColor** `string` circle background color
+- **borderColor** `string` circle border color
+
+<a name="cubic-bezier-params"></a>
+#### Cubic Bezier Params
+
+- **p0** `Object` first point coordinates **(Required)**
+  - **x** `number` first point x-coordinate **(Required)**
+  - **y** `number` first point y-coordinate **(Required)**
+- **p1** `Object` second point coordinates **(Required)**
+  - **x** `number` second point x-coordinate **(Required)**
+  - **y** `number` second point y-coordinate **(Required)**
+- **p2** `Object` third point coordinates **(Required)**
+  - **x** `number` third point x-coordinate **(Required)**
+  - **y** `number` third point y-coordinate **(Required)**
+- **p3** `Object` fourth point coordinates **(Required)**
+  - **x** `number` fourth point x-coordinate **(Required)**
+  - **y** `number` fourth point y-coordinate **(Required)**
+- **color** `string` curve color
+
+<a name="line-params"></a>
+#### Line Params
+
+- **p0** `Object` first point coordinates **(Required)**
+  - **x** `number` first point x-coordinate **(Required)**
+  - **y** `number` first point y-coordinate **(Required)**
+- **p1** `Object` second point coordinates **(Required)**
+  - **x** `number` second point x-coordinate **(Required)**
+  - **y** `number` second point y-coordinate **(Required)**
+- **color** `string` line color
+
+<a name="rect-params"></a>
+#### Rect Params
+
+- **x** `number` rect top left point x-coordinate **(Required)**
+- **y** `number` rect top left point y-coordinate **(Required)**
+- **width** `number` rect width **(Required)**
+- **height** `number` rect height
+- **backgroundColor** `string` rect background color
+- **borderColor** `string` rect border color

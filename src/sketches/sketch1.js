@@ -1,8 +1,8 @@
 import getCirclePointCoordinates from "./helpers/getCirclePointCoordinates";
 
 export const controls = {
-  canvasHeight : 400,
   canvasWidth : 450,
+  canvasHeight : 400,
   canvasBg : "#FFFFFF",
   circleOriginX : 275,
   circleOriginY : 100,
@@ -14,10 +14,10 @@ export const controls = {
   numberOfGroups : 13
 };
 
-export function sketch(p5, state) {
+export function getSketchDefinition(state) {
   const {
-    canvasHeight,
     canvasWidth,
+    canvasHeight,
     canvasBg,
     circleOriginX,
     circleOriginY,
@@ -29,38 +29,70 @@ export function sketch(p5, state) {
     numberOfGroups
   } = state;
 
-  p5.setup = () => {
-    p5.createCanvas(canvasWidth, canvasHeight);
-    p5.angleMode(p5.DEGREES);
-    p5.background(canvasBg);
-    p5.noLoop();
+  const settings = {
+    width : canvasWidth,
+    height : canvasHeight,
+    backgroundColor : canvasBg
   };
 
-  p5.draw = () => {
-    // p5.circle(circleOriginX, circleOriginY, circleRadius * 2);
+  const shapes = [];
 
-    let delta1 = defaultDelta1;
-    let delta2 = defaultDelta2;
+  // shapes.push({
+  //   type : "circle",
+  //   params : {
+  //     x : circleOriginX,
+  //     y : circleOriginY,
+  //     diameter : circleRadius * 2
+  //   }
+  // });
 
-    for (let i = 0; i < numberOfGroups; i++) {
-      delta1 += (6 + i / 3) / 2;
-      delta2 += (6 + i - 1) / 2;
+  let delta1 = defaultDelta1;
+  let delta2 = defaultDelta2;
 
-      for (let j = 0; j < 5; j++) {
-        const {
-          x : x1,
-          y : y1
-        } = getCirclePointCoordinates(circleOriginX, circleOriginY, circleRadius, delta1 + j / 2);
+  for (let i = 0; i < numberOfGroups; i++) {
+    delta1 += (6 + i / 3) / 2;
+    delta2 += (6 + i - 1) / 2;
 
-        const {
-          x : x2,
-          y : y2
-        } = getCirclePointCoordinates(circleOriginX, circleOriginY, circleRadius, delta2 + j / 2);
+    for (let j = 0; j < 5; j++) {
+      const {
+        x : x1,
+        y : y1
+      } = getCirclePointCoordinates(circleOriginX, circleOriginY, circleRadius, delta1 + j / 2);
 
-        p5.line(x1, y1, x2, y2);
-        p5.line(x2, y2, horizontalLinesX, horizontalLinesY);
-      }
+      const {
+        x : x2,
+        y : y2
+      } = getCirclePointCoordinates(circleOriginX, circleOriginY, circleRadius, delta2 + j / 2);
+
+      shapes.push({
+        type : "line",
+        params : {
+          p0 : {
+            x : x1,
+            y : y1
+          },
+          p1 : {
+            x : x2,
+            y : y2
+          }
+        }
+      });
+
+      shapes.push({
+        type : "line",
+        params : {
+          p0 : {
+            x : x2,
+            y : y2
+          },
+          p1 : {
+            x : horizontalLinesX,
+            y : horizontalLinesY
+          }
+        }
+      });
     }
-  };
+  }
 
+  return { settings, shapes };
 }
